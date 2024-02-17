@@ -1,5 +1,6 @@
 <?php
 include("config/config.php");
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -27,10 +28,14 @@ include("config/config.php");
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>id</th>
+                                    <th>Apellido</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody id="datos">
+                                <!-- Aca vamos a cargar los datos con ajax -->
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -40,3 +45,31 @@ include("config/config.php");
         <script src="assets/javascripts/bootstrap.min.js"></script>
     </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+            // Desde javascript hacemos una llamada ajax
+            $.ajax({
+                url: './ax/vista.php',
+                type: 'GET',    // El tipo será get porque solamente vamos a solicitar datos
+                dataType: 'json',
+                success: function(response){
+                    console.log(response);
+                    var tbody = $('#datos'); // Utilizamos el id del tbody para cargar los datos
+                    tbody.empty();
+
+                    // Recorremos todos los datos recibidos y agregarlos a la tabla
+                    $.each(response, function(index, row){
+                        var tr = $('<tr>');
+                        tr.append('<td>' + row.id + '</td>');
+                        tr.append('<td>' + row.apellido + '</td>');
+                        tr.append('<td>' + row.fecha + '</td>');
+                        tbody.append(tr);
+                    });
+                }, error: function(xhr, status, error) {
+                    // Utilizamos un codigo para ver si hay algun tipo de error en la solicitud visto desde la consola
+                    console.error("Error en la solicitud: ", status, error);
+  }
+            });
+        });
+</script>
