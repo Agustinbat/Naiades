@@ -3,20 +3,20 @@
     include("../config/config.php");
 
     // Guardamos la consulta hecha en la base de datos en una variable
-    $r = mysqli_query($base, "SELECT * FROM usuarios");
+    $sql = mysqli_query($base, "SELECT * FROM usuarios");
 
-    $d = array();
+    $datos = array();
 
-    if ($r) {
+    if ($sql) {
         // Nos fijamos si la consulta devuelve filas y en el caso de que lo haga lo guardamos en un array
-        if ($r->num_rows > 0) {
-            while ($row = $r->fetch_assoc()) {
-                $d[] = $row;
+        if ($sql->num_rows > 0) {
+            while ($row = $sql->fetch_assoc()) {
+                $datos[] = $row;
             }
         }
         // Nos aseguramos de volver el resultado en formato json
         header('Content-Type: application/json');
-        echo json_encode($d);
+        echo json_encode($datos);
     } else {
         // Manejo de errores en la consulta
         header('Content-Type: application/json');

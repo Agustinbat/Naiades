@@ -6,6 +6,6 @@ CREATE TABLE `usuarios` (
   `fecha` date
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `usuarios`(`id`, `apellido`, `fecha`) VALUES (1 , 'Vernizzi', '1970-11-13')
-INSERT INTO `usuarios`(`id`, `apellido`, `fecha`) VALUES (2 , 'Nuñez', '1998-10-16')
-INSERT INTO `usuarios`(`id`, `apellido`, `fecha`) VALUES (3 , 'Rodriguez', '2000-05-31')
+INSERT INTO `usuarios`(`apellido`, `fecha`) VALUES ('Vernizzi', '1970-11-13')
+INSERT INTO `usuarios`(`apellido`, `fecha`) VALUES ('Nuñez', '1998-10-16')
+INSERT INTO `usuarios`(`apellido`, `fecha`) VALUES ('Rodriguez', '2000-05-31')

@@ -44,10 +44,10 @@ include("config/config.php");
             $('#formulario').submit(function(event){
                 event.preventDefault(); // Evitamos que se envie el formulario por defecto
                 var formData = $(this).serialize();
-                // Enviamos los datos a Ajax
+                // Desde javascript hacemos una llamada Ajax
                 $.ajax({
                     url: './ax/formulario.php',
-                    type: 'POST',
+                    type: 'POST',   // El tipo sera POST porque vamos a enviar datos para cargarlos en la BD
                     data: formData,
                     dataType: 'json',
                     success: function(response){
